@@ -34,9 +34,7 @@ class ConfigViewModel(app: Application) : AndroidViewModel(app) {
             val msg = withContext(Dispatchers.IO) {
                 try {
                     val name = queryName(uri)
-                    if (!name.endsWith(".hc", ignoreCase = true)) {
-                        return@withContext "الملف لازم يكون بامتداد .hc"
-                    }
+                    
                     val dir = File(getApplication<Application>().filesDir, "configs").apply { mkdirs() }
                     val safe = name.replace(Regex("[^\\w.\\-]"), "_")
                     val dest = File(dir, "${System.currentTimeMillis()}_$safe")
